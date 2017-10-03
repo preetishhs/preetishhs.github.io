@@ -1,0 +1,12 @@
+Updated: 
+Before client team had no hosting on server but now webclient is going to hosted so we can host this pages with web client.
+This will avoid sending pages from client team to server team and generating proxy build for these pages only. Now client team can control this hosting.
+Old location will still stay live until all client move to new location.
+
+Original :
+These integration pages are loaded on sky server URL https://socialconnect.sky.shoretel.com/linkedin/ as part of server reverese proxy setup.
+server reverse proxy is handled by server team and all the code is located under following PBX branch.
+//depot/projects/Cosmo4/ReverseProxy/source/endo/endolinkedin/
+
+Because client stream is seperate from PBX branch , we keep copy of latest code in client stream for our reference.
+If you modify these pages, then send copy to sever team to update PBX branch and send copy to cloud IT team if you want to update these files on cloud.
