@@ -35,7 +35,7 @@
             var localUserInfo = p_oUserInfo;
           
             //This is the best way of getting profile params
-            IN.API.Profile("me").fields(["pictureUrls::(original)","pictureUrl","publicProfileUrl", "firstName", "lastName", "id", "headline"]).result(function (result) {
+            IN.API.Profile("me").fields(["pictureUrls","pictureUrl","publicProfileUrl", "firstName", "lastName", "id", "headline"]).result(function (result) {
                 console.log(result);
                 if (!result.values[0].pictureUrls._total) {
                     message(result.values[0].firstName + ' ' + result.values[0].lastName + ' -- ' + result.values[0].headline + ' (' + result.values[0].id + ')');
