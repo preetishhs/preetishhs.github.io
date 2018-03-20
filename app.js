@@ -37,13 +37,17 @@
             //This is the best way of getting profile params
             IN.API.Profile("me").fields(["picture-urls::(original)","pictureUrl","publicProfileUrl", "firstName", "lastName", "id", "headline"]).result(function (result) {
                 console.log(result);
-                if (!result.values[0].pictureUrls._total) {
-                    message(result.values[0].firstName + ' ' + result.values[0].lastName + ' -- ' + result.values[0].headline + ' (' + result.values[0].id + ')');
-                    window.parent.postMessage("NotFound", '*');
-                    IN.User.logout();
-                } else {
+                if (result.values[0].pictureUrls._total) {
                     message('' + ' <img src="' + result.values[0].pictureUrls.values[0] + '" \/>' + result.values[0].firstName + ' ' + result.values[0].lastName + ' -- ' + result.values[0].headline + ' (' + result.values[0].id + ')');
                     window.parent.postMessage(result.values[0].pictureUrls.values[0], '*');
+                    IN.User.logout();
+                } else if (result.values[0].pictureUrl) {
+                    message('' + ' <img src="' + result.values[0].pictureUrl + '" \/>' + result.values[0].firstName + ' ' + result.values[0].lastName + ' -- ' + result.values[0].headline + ' (' + result.values[0].id + ')');
+                    window.parent.postMessage(result.values[0].pictureUrl, '*');
+                    IN.User.logout();
+                } else {
+                    message(result.values[0].firstName + ' ' + result.values[0].lastName + ' -- ' + result.values[0].headline + ' (' + result.values[0].id + ')');
+                    window.parent.postMessage("NotFound", '*');
                     IN.User.logout();
                 }
             });
